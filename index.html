@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rozgar Chowk </title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-hard-hat"></i>
+            <span>Rozgar Chowk</span>
+        </div>
+        <div class="nav-links">
+            <a href="#workersGrid">Find Workers</a>
+            <button class="btn btn-primary" id="openRegModal">Register Now</button>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Connecting Skilled Daily Wage Workers with Employers</h1>
+            <p>A fast, transparent, and reliable platform to hire construction workers, painters, plumbers, and more directly from the digital labour chowk.</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary btn-large" onclick="document.getElementById('openRegModal').click()">I am a Worker</button>
+                <button class="btn btn-secondary btn-large" onclick="document.getElementById('openRegModal').click()">I am an Employer</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="filters">
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search by skill (e.g., Mason, Painter, Plumber)...">
+            </div>
+            <div class="category-chips">
+                <button class="chip active" data-filter="all">All</button>
+                <button class="chip" data-filter="Mason">Mason</button>
+                <button class="chip" data-filter="Painter">Painter</button>
+                <button class="chip" data-filter="Plumber">Plumber</button>
+                <button class="chip" data-filter="Electrician">Electrician</button>
+                <button class="chip" data-filter="Helper">Helper</button>
+            </div>
+        </section>
+
+        <section class="workers-grid" id="workersGrid">
+            <!-- Worker cards will be injected here by JS -->
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo">
+                    <i class="fas fa-hard-hat"></i>
+                    <span>Rozgar Chowk</span>
+                </div>
+                <p>Digital platform bringing daily wage workers and employers together.</p>
+            </div>
+            <div class="footer-help">
+                <h3>Help Point</h3>
+                <p><i class="fas fa-phone"></i> +91 98765-43210</p>
+                <p><i class="fas fa-envelope"></i> help@rozgarchowk.in</p>
+            </div>
+            <div class="footer-owner">
+                <h3>Created By</h3>
+                <p>Prashant</p>
+                <p>&copy; 2026. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Registration Modal -->
+    <div class="modal-overlay" id="regModal">
+        <div class="modal-content glass-effect">
+            <button class="close-modal" id="closeRegModal"><i class="fas fa-times"></i></button>
+            
+            <div class="modal-header">
+                <h2>Join Rozgar Chowk</h2>
+                <p>Register to start finding work or hiring talent instantly.</p>
+            </div>
+
+            <div class="role-tabs">
+                <button class="tab-btn active" data-tab="worker">I'm a Worker</button>
+                <button class="tab-btn" data-tab="owner">I'm an Employer</button>
+            </div>
+
+            <form id="registrationForm" class="registration-form">
+                <input type="hidden" id="userRole" value="worker">
+                
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" required placeholder="Enter your full name">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" required placeholder="10-digit mobile number" pattern="[0-9]{10}">
+                </div>
+
+                <!-- Worker Specific Fields -->
+                <div id="workerFields" class="dynamic-fields">
+                    <div class="form-group">
+                        <label for="skill">Primary Skill (Work Type)</label>
+                        <select id="skill" required>
+                            <option value="">Select your skill</option>
+                            <option value="Mason">Mason (Rajmistri)</option>
+                            <option value="Painter">Painter</option>
+                            <option value="Plumber">Plumber</option>
+                            <option value="Electrician">Electrician</option>
+                            <option value="Carpenter">Carpenter</option>
+                            <option value="Helper">Helper (Majdoor)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="experience">Experience (Years)</label>
+                        <input type="number" id="experience" min="0" placeholder="Years of experience">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="wage">Expected Daily Wage (₹)</label>
+                        <input type="number" id="wage" min="100" placeholder="e.g. 500">
+                    </div>
+                </div>
+
+                <!-- Owner Specific Fields -->
+                <div id="ownerFields" class="dynamic-fields hidden">
+                    <div class="form-group">
+                        <label for="companyName">Company/Project Name (Optional)</label>
+                        <input type="text" id="companyName" placeholder="Enter company name">
+                    </div>
+                    <div class="form-group">
+                        <label for="location">Location requirement</label>
+                        <input type="text" id="location" placeholder="City or area" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-full">Register Account</button>
+            </form>
+            
+            <div id="successMessage" class="success-message hidden">
+                <i class="fas fa-check-circle"></i>
+                <h3>Registration Successful!</h3>
+                <p>Welcome to the platform.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
